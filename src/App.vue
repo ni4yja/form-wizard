@@ -5,9 +5,23 @@
       <Card>
         <template #title> {{ stepTitle }}</template>
         <template #content>
-          <Contact v-if="step === 1" />
-          <Shipping v-else-if="step === 2" />
-          <Review v-else />
+          <Contact 
+            v-if="step === 1"
+            v-model:name="contactInfo.name"
+            v-model:email="contactInfo.email"
+            v-model:phone="contactInfo.phone" 
+          />
+          <Shipping 
+            v-else-if="step === 2"
+            v-model:street="shippingInfo.street"
+            v-model:state="shippingInfo.state"
+            v-model:zip="shippingInfo.zip" 
+          />
+          <Review 
+            v-else
+            :contactInfo="contactInfo"
+            :shippingInfo="shippingInfo"
+          />
         </template>
         <template #footer>
           <Button label="Previous" v-if="step > 1" @click="step -= 1" />
@@ -39,7 +53,17 @@ export default {
   data() {
     return {
       step: 1,
-    };
+      contactInfo: {
+        name: '',
+        email: '',
+        phone: ''
+      },
+      shippingInfo: {
+        street: '',
+        state: '',
+        zip: null
+      }
+    }
   },
   computed: {
     stepTitle () {
