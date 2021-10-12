@@ -75,6 +75,11 @@ export default {
         return 'Review'
       }
     }
+  },
+  methods: {
+    submit () {
+      console.log("The form is submitted")
+    }
   }
 };
 </script>

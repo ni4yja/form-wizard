@@ -38,7 +38,7 @@ export default {
       this.$emit('update:state', e.target.value)
     },
     changeZip (e) {
-      this.$emit('update:zip', e.target.value)
+      this.$emit('update:zip', parseInt(e.target.value))
     }
   }
 }
